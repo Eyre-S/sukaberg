@@ -51,10 +51,14 @@ registerBlockType (
 			ftime: {
 				type: 'string',
 				default: '????-??-??'
+			},
+			color: {
+				type: 'string',
+				default: 'watching'
 			}
 		},
 		edit: ( props ) => {
-			const {attributes: {title, img, location, total, now, state, stime, ftime}, setAttributes } = props;
+			const {attributes: {title, img, location, total, now, state, stime, ftime, color}, setAttributes } = props;
 			function setState (event) {
 				const selected = event.target.querySelector( '#biliblock-state-chooser option:checked' );
 				setAttributes({state: selected.value});
@@ -81,18 +85,34 @@ registerBlockType (
 			function setLocation (location) {
 				setAttributes({location});
 			}
+			function setColor (event) {
+				const selected = event.target.querySelector( '#biliblock-color-chooser option:checked' );
+				setAttributes({color: selected.value});
+				event.preventDefault();
+			}
 			return(
 				<div className="biliblock-anime-card" >
+					<img style={{borderRadius:'4px'}, {margin:'10px'}, {height:'140px'}} src={img} /><br/>
 					番名<TextControl className="biliblock-text" value={title} onChange={setTitle} />
-					视觉图链接<TextControl className="biliblock-text" value={img} onChange={setImg} />
-					<form onSubmit={setState} className="biliblock-block">
-						观看状态：
+					<form onSubmit={setColor} className="biliblock-num-block">
+						观看状态：<br />
+						<select id="biliblock-color-chooser" value={color} onChange={setColor}>
+							<option value="off">不感兴趣</option>
+							<option value="watching">关注</option>
+							<option value="love">喜欢</option>
+						</select>
+					</form>
+					<form onSubmit={setState} className="biliblock-num-block">
+						观看状态：<br />
 						<select id="biliblock-state-chooser" value={state} onChange={setState}>
 							<option value='等待上映'>等待上映</option>
 							<option value='观看中'>观看中</option>
 							<option value='已看完'>已看完</option>
 						</select>
 					</form>
+					<div class="biliblock-clear biliblock-air-10"></div>
+					<div className="biliblock-clear biliblock-margin-top">视觉图链接</div>
+					<TextControl className="biliblock-text" value={img} onChange={setImg} />
 					<div className="biliblock-num-block">
 						<div className="biliblock-dat-inp">
 							<TextControl label="看完时间" value={ftime} onChange={setFtime}/>
