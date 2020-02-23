@@ -1,0 +1,35 @@
+.biliblock-anime-card {
+/* 	border: 1px dashed #d9d9d9; */
+	border-radius: 8px;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+/* 	box-shadow: 0 0 38px -16px rgba(0,0,0,0.56); */
+	padding: 12px 30px;
+	margin-bottom: 10px;
+	
+	
+	
+}
+
+.biliblock-anime-intro {
+	line-height: 1.618;
+}
+
+.biliblock-anime-intro > h4 {
+	font-size: 20px;
+}
+
+.biliblock-anime-intro p {
+	font-size: 15px;
+}
+
+.biliblock-anime-intro * {
+	clear: none;
+}
+
+.biliblock-round-led {
+	background: #fafafa repeating-linear-gradient(-45deg, #fff, #fff 1.125rem, transparent 1.125rem, transparent 2.25rem);
+	width: 24px;
+	height: 24px;
+	border-radius: 100px;
+	float:left;
+}
